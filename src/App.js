@@ -139,8 +139,7 @@ class AppComponent extends React.Component {
 
       console.log(worksheetData);
       const measures = worksheetData.columns.filter(
-        columns =>
-          columns.dataType === "float" || columns.dataType === "integer"
+        columns => columns.dataType === "float" || columns.dataType === "int"
       );
 
       this.setState({
