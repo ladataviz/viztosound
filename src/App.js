@@ -209,7 +209,7 @@ class AppComponent extends React.Component {
     let step = diff / 7;
 
     for (let i = 0; i < musicTable.length; i++) {
-      this.sleep(200);
+      this.sleep(500);
       let value = musicTable[i];
       if (value < min + step) window.createjs.Sound.play(piano0);
       else if (value < min + 2 * step) window.createjs.Sound.play(piano1);
