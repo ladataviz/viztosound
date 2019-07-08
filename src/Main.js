@@ -1,5 +1,6 @@
+"use strict";
 import React from "react";
-import { Button } from "react-bootstrap";
+import { Button, Glyphicon, Modal } from "react-bootstrap";
 import LoadingIndicatorComponent from "./LoadingIndicatorComponent";
 import SheetListComponent from "./SheetListComponent";
 import DateListComponent from "./DateListComponent";
@@ -12,7 +13,14 @@ import p4 from "./Piano-C5.ogg";
 import p5 from "./Piano-C6.ogg";
 import p6 from "./Piano-C7.ogg";
 
-require("./App.css");
+require("createjs-module");
+
+require("normalize.css/normalize.css");
+require("styles/App.css");
+
+this.createjs = {};
+window.createjs = this.createjs;
+// Declare this so our linter knows that tableau is a global object
 /* global tableau */
 var piano0 = "p0";
 var piano1 = "p1";
@@ -185,13 +193,13 @@ class AppComponent extends React.Component {
   }
 
   loadSound() {
-    window.createjs.Sound.registerSound(p0, piano0);
-    window.createjs.Sound.registerSound(p1, piano1);
-    window.createjs.Sound.registerSound(p2, piano2);
-    window.createjs.Sound.registerSound(p3, piano3);
-    window.createjs.Sound.registerSound(p4, piano4);
-    window.createjs.Sound.registerSound(p5, piano5);
-    window.createjs.Sound.registerSound(p6, piano6);
+    createjs.Sound.registerSound(p0, piano0);
+    createjs.Sound.registerSound(p1, piano1);
+    createjs.Sound.registerSound(p2, piano2);
+    createjs.Sound.registerSound(p3, piano3);
+    createjs.Sound.registerSound(p4, piano4);
+    createjs.Sound.registerSound(p5, piano5);
+    createjs.Sound.registerSound(p6, piano6);
   }
 
   playSound(musicTable) {
@@ -203,14 +211,14 @@ class AppComponent extends React.Component {
     for (let i = 0; i < musicTable.length; i++) {
       this.sleep(300);
       let value = musicTable[i];
-      if (value < min + step) window.createjs.Sound.play(piano0);
-      else if (value < min + 2 * step) window.createjs.Sound.play(piano1);
-      else if (value < min + 3 * step) window.createjs.Sound.play(piano2);
-      else if (value < min + 4 * step) window.createjs.Sound.play(piano2);
-      else if (value < min + 5 * step) window.createjs.Sound.play(piano3);
-      else if (value < min + 6 * step) window.createjs.Sound.play(piano5);
-      else if (value < min + 6 * step) window.createjs.Sound.play(piano5);
-      else window.createjs.Sound.play(piano6);
+      if (value < min + step) createjs.Sound.play(piano0);
+      else if (value < min + 2 * step) createjs.Sound.play(piano1);
+      else if (value < min + 3 * step) createjs.Sound.play(piano2);
+      else if (value < min + 4 * step) createjs.Sound.play(piano2);
+      else if (value < min + 5 * step) createjs.Sound.play(piano3);
+      else if (value < min + 6 * step) createjs.Sound.play(piano5);
+      else if (value < min + 6 * step) createjs.Sound.play(piano5);
+      else createjs.Sound.play(piano6);
     }
   }
 
