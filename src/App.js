@@ -163,11 +163,19 @@ class AppComponent extends React.Component {
 
       const dateIndex = this.state.selectedDateIndex;
       const measureIndex = this.state.selectedMeasureIndex;
+      console.log(worksheetData);
 
       const musicTable = worksheetData.data
-        .map(x => [x[dateIndex].value, x[measureIndex].value])
+        .map(
+          x =>
+            x[measureIndex].value != "%missing%" && [
+              x[dateIndex].value,
+              x[measureIndex].value
+            ]
+        )
+        .filter(x => x)
         .sort()
-        .map(x => x[measureIndex]);
+        .map(x => x[1]);
       console.log(musicTable);
       this.playSound(musicTable);
     });
@@ -201,7 +209,7 @@ class AppComponent extends React.Component {
     let step = diff / 7;
 
     for (let i = 0; i < musicTable.length; i++) {
-      this.sleep(300);
+      this.sleep(200);
       let value = musicTable[i];
       if (value < min + step) window.createjs.Sound.play(piano0);
       else if (value < min + 2 * step) window.createjs.Sound.play(piano1);
