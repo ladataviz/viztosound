@@ -137,6 +137,7 @@ class AppComponent extends React.Component {
       // Get the first DataTable for our selected marks (usually there is just one)
       const worksheetData = sumdata;
 
+      console.log(worksheetData);
       const measures = worksheetData.columns.filter(
         columns =>
           columns.dataType === "float" || columns.dataType === "integer"
