@@ -214,11 +214,11 @@ class AppComponent extends React.Component {
       if (value < min + step) window.createjs.Sound.play(piano0);
       else if (value < min + 2 * step) window.createjs.Sound.play(piano1);
       else if (value < min + 3 * step) window.createjs.Sound.play(piano2);
-      else if (value < min + 4 * step) window.createjs.Sound.play(piano2);
-      else if (value < min + 5 * step) window.createjs.Sound.play(piano3);
+      else if (value < min + 4 * step) window.createjs.Sound.play(piano3);
+      else if (value < min + 5 * step) window.createjs.Sound.play(piano4);
       else if (value < min + 6 * step) window.createjs.Sound.play(piano5);
-      else if (value < min + 6 * step) window.createjs.Sound.play(piano5);
-      else window.createjs.Sound.play(piano6);
+      else if (value < min + 6 * step) window.createjs.Sound.play(piano6);
+      else window.createjs.Sound.play(piano7);
     }
   }
 
