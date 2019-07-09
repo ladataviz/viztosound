@@ -48,7 +48,7 @@ class AppComponent extends React.Component {
     this.loadSound();
 
     tableau.extensions.initializeAsync().then(() => {
-      const selectedSheet = tableau.extensions.settings.get("sheet");
+      const selectedSheet = undefined;
       const sheetNames = tableau.extensions.dashboardContent.dashboard.worksheets.map(
         worksheet => worksheet.name
       );
@@ -87,7 +87,6 @@ class AppComponent extends React.Component {
   }
 
   onSelectDate(dateName) {
-    console.log(dateName.index);
     this.setState({ isLoading: true });
     tableau.extensions.settings.saveAsync().then(() => {
       this.setState(
@@ -137,7 +136,6 @@ class AppComponent extends React.Component {
       // Get the first DataTable for our selected marks (usually there is just one)
       const worksheetData = sumdata;
 
-      console.log(worksheetData);
       const measures = worksheetData.columns.filter(
         columns => columns.dataType === "float" || columns.dataType === "int"
       );
@@ -163,12 +161,11 @@ class AppComponent extends React.Component {
 
       const dateIndex = this.state.selectedDateIndex;
       const measureIndex = this.state.selectedMeasureIndex;
-      console.log(worksheetData);
 
       const musicTable = worksheetData.data
         .map(
           x =>
-            x[measureIndex].value != "%missing%" && [
+            x[measureIndex].value !== "%missing%" && [
               x[dateIndex].value,
               x[measureIndex].value
             ]
@@ -176,7 +173,6 @@ class AppComponent extends React.Component {
         .filter(x => x)
         .sort()
         .map(x => x[1]);
-      console.log(musicTable);
       this.playSound(musicTable);
     });
 
